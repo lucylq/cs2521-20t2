@@ -17,7 +17,9 @@ int main (int argc, char *argv[]) {
 }
 
 /*
-commandline input: argc, argv
+commandline input: 
+argc
+argv
 
 runtime input/output from stdin:
 scanf

@@ -14,7 +14,3 @@
 - switch (q8, q10)
 - linked lists (q16)
 - lab
-
-## todo
-- tutorial recordings?
-- send out email with github link
