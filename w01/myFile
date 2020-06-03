@@ -1,0 +1,5 @@
+argc: 4
+argv[0]: ./run
+argv[1]: hello
+argv[2]: there,
+argv[3]: John Shepherd
