@@ -5,7 +5,7 @@ To clone the repository execute the command into your terminal:
 
 `git clone git@github.com:lucylq/cs2521-20t2.git`
 
-If you don't have SSH set up, clone using ssh:
+If you don't have SSH set up, clone using http:
 
 `git clone https://github.com/lucylq/cs2521-20t2.git`
 
