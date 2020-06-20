@@ -6,7 +6,7 @@
 typedef struct BSTNode *BSTree;
 
 // Tutorial Functions.
-int BSTreeHeight (BSTree t);
+int BSTreeHeight (BSTree t); 
 int countInternal (BSTree t);
 int nodeDepth (BSTree t, int key);
 int BSTreeMaxBranchLen(BSTree t);
@@ -17,8 +17,6 @@ int BSTWidth (BSTree t);
 int countEven (BSTree t);
 // are two trees identical? 1 = true, 0 = false
 int isIdentical (BSTree t1, BSTree t2);
-// balanced: left and right branch differ by 1
-int isBalanced (BSTree t);
 // symmetric: left and right branch have the same shape, reflected (disregard values).
 int isSymmetric (BSTree t);
 int isSymmetricHelper (BSTree t1, BSTree t2);
