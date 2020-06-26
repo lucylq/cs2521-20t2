@@ -1,6 +1,6 @@
 # Balanced Trees
 
-## Splay Tree
+## Splay Trees
 For every operation, splay the affected node to the top. Splay using tree rotations: L, R, LL, RR, LR, RL.
 
 Operations:
