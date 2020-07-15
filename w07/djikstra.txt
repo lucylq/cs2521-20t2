@@ -1,0 +1,20 @@
+
+Pseudocode for djikstra's algorithm.
+
+initialise: seen, dist, pred, queue
+
+while (queue is not empty):
+    node = dequeue (q)
+    if (seen[node]) continue;
+    seen[node] = true;
+    for each child of node:
+        if (dist to child via node < dist[child]):
+            update dist[child]
+            update pred[child]
+        if (!seen[child])
+            add child to queue
+end while loop
+
+dist: stores the length of the shortest path
+pred: pred[node] stores the predecessor of that node. Backtrack through pred to find the path.
+
