@@ -1,4 +1,4 @@
-#  Graphs
+# Graphs
 
 ### Examples
 * Maps
@@ -77,12 +77,11 @@ Time Complexity to access an edge: O(V)
 * Use a stack and a seen list.
 * Pop nodes, push children.
 
-
 ## Graph Algorithms
 
 Minimum Spanning Tree
-- Kruskal's
-- Prim's
+- Kruskal's (sort edges)
+- Prim's (greedy, bfs)
 
 Shortest Path
 - Djikstra's
