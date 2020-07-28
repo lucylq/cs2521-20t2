@@ -17,7 +17,7 @@ void freeTrie (Trie t);
 void insertWord (Trie t, char *word);
 void removeWord (Trie t, char *word);
 
-int findWord (Trie t, char *word);
+int findWord (Trie t, char *word); // Try implement this
 
 void printKeys(Trie t);
 void printKeysHelper (Trie t, char *word, int index);
