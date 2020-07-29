@@ -4,13 +4,14 @@
 #define MAX 100
 
 // Sorting
-void bubblesort (int *a, int length);
+void bubbleSort (int *a, int lo, int hi);
 
-void quicksort (int *a, int length);
-void qsort_ (int *a, int lo, int hi);
-int qs_partition (int *a, int lo, int hi);
+void shellSort(int *a, int lo, int hi);
 
-void mergesort (int *a, int length);
+void quickSort (int *a, int lo, int hi);
+int qsort_ (int *a, int lo, int hi);
+
+void mergeSort (int *a, int lo, int hi);
 void msort (int *a, int *tmp, int lo, int hi);
 int partition (int *a, int *tmp, int lo, int hi);
 
@@ -22,9 +23,10 @@ int main (int argc, char *argv[]) {
   int *a = malloc (sizeof (int) *MAX);
   int len = 0;
   while (len < MAX && scanf ("%d", &a[len]) == 1) len++;
-  // quicksort(a, len);
-  // mergesort(a, len);
-  // bubblesort(a, len);
+  quickSort(a, 0, len);
+  // mergeSort(a, 0, len);
+  // bubbleSort(a, 0, len);
+  // shellSort (a, 0, len);
   printf ("result\n");
   print(a, 0, len);
 
@@ -32,12 +34,11 @@ int main (int argc, char *argv[]) {
   return 0;
 }
 
-
 // ascending, early exit.
-void bubblesort (int *a, int length) {
+void bubbleSort (int *a, int lo, int hi) {
   int sorted = 1;
-  for (int i = 0; i < length; i++) {
-    for (int j = 0; j < length - i; j++) {
+  for (int i = lo; i < hi; i++) {
+    for (int j = lo; j < hi - i; j++) {
       if (a[j-1] > a[j]) {
         swap (a, j-1, j);
         sorted = 0;
@@ -45,6 +46,32 @@ void bubblesort (int *a, int length) {
     }
     if (sorted) break;
   }
+}
+
+/* Shellsort pseudocode
+
+  calculate #gaps
+  for h from largest to smallest gap size
+    sort every h'th element
+
+  Sample tutorial code from Tutorial 9
+  https://cgi.cse.unsw.edu.au/~cs2521/20T2/tutes/week09/index.php
+
+*/
+void shellSort(int *a, int lo, int hi)
+{
+   int i, j, h, val;
+   for (h = 1; h <= (hi-lo)/9; h = 3*h+1) ;
+   for ( ; h > 0; h /= 3) {
+      for (i = lo+h; i <= hi; i++) {
+         j = i;  val = a[i];
+         while (j >= lo+h && val < a[j-h]) {
+            a[j] = a[j-h];
+            j -= h;
+         }
+         a[j] = val;
+      }
+   }
 }
 
 /* Quicksort pseudocode
@@ -61,21 +88,16 @@ partition (a, lo, hi)
   swap when necessary
 
 */
-void quicksort (int *a, int length) {
-  qsort_(a, 0, length);
-}
-
-// array valid from lo..hi-1
-void qsort_ (int *a, int lo, int hi) {
+void quickSort (int *a, int lo, int hi) {
   // one item
   if (hi - lo <= 1) return;
-  int p = qs_partition (a, lo, hi);
-  qsort_ (a, lo, p);
-  qsort_ (a, p+1, hi);
+  int p = qsort_ (a, lo, hi);
+  quickSort (a, lo, p);
+  quickSort (a, p+1, hi);
 }
 
 // array valid from lo..hi-1
-int qs_partition (int *a, int lo, int hi) {
+int qsort_ (int *a, int lo, int hi) {
   int pivot = a[lo];
   int min = lo;
   for (int i = lo + 1; i < hi; i++) {
@@ -99,11 +121,10 @@ partition (a, lo, hi)
   msort (a, mid, hi)
 
 */
-
-void mergesort (int *a, int length) {
-  int *tmp = malloc (sizeof (int) *length);
-  for (int i = 0; i < length; i++) tmp[i] = a[i];
-  msort (a, tmp, 0, length);
+void mergeSort (int *a, int lo, int hi) {
+  int *tmp = malloc (sizeof (int) *lo);
+  for (int i = 0; i < hi; i++) tmp[i] = a[i];
+  msort (a, tmp, lo, hi);
   free(tmp);
 }
 
