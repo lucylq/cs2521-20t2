@@ -138,7 +138,7 @@ void msort (int *a, int *tmp, int lo, int hi) {
   int mid = p;
   int l = lo;
 
-  // merge
+  // merge two sorted lists
   for (int i = lo; i < hi; i++) {
     if (l >= p) {
       tmp[i] = a[mid];
