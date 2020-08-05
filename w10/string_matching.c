@@ -134,18 +134,29 @@ int bm (char * pattern, char * text) {
             ip --;
             it --;
         } else {
-            ip = p-1;
+            printf ("Mismatch: %c, %c\n", text[it], pattern[ip]);
+            //ip = p-1;
             // if the character doesn't exist, shift it completely forwards 
             if (last[text[it] - 'a'] == -1) {
-                printf ("Character '%c' not found in pattern - shift forward by %d\n", text[it], p);
+                printf ("Character '%c' not found in pattern - shift forwards\n", text[it]);
                 it = it + p;
-                align += p;
+                ip = p-1;
+                align = it - p + 1;
             } 
             // otherwise, shift it forwards by the last(c)
             else {
-                printf ("Shift forwards by (%d - last(%c)) = %d\n", (p-1), text[it], (p-1) - last[text[it] - 'a']);
-                it = it + (p-1) - last[text[it] - 'a'];
-                align = it - (p-1);
+                int shift = (p-1) - last[text[it] - 'a'];
+               // printf ("shift: %d, ip: %d, it: %d\n", shift, ip, it);
+                if (shift < p - ip) {
+                  printf ("Shift forwards: no '%c' exists before index %d\n", text[it], ip);
+                  it = it + p;
+                  ip = p - 1;
+                  align = it - p + 1;
+                } else {
+                  printf ("Shift forwards by (%d - last(%c)) = %d\n", (p-1), text[it], (p-1) - last[text[it] - 'a']);
+                  it = it + shift;
+                  align = it - (p-1);
+                }
             }
         }
     }
