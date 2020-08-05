@@ -148,7 +148,7 @@ int bm (char * pattern, char * text) {
                 int shift = (p-1) - last[text[it] - 'a'];
                // printf ("shift: %d, ip: %d, it: %d\n", shift, ip, it);
                 if (shift < p - ip) {
-                  printf ("Shift forwards: no '%c' exists before index %d\n", text[it], ip);
+                  printf ("Shift forwards: last '%c' exists before index %d\n", text[it], ip);
                   it = it + p;
                   ip = p - 1;
                   align = it - p + 1;
